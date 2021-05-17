@@ -1,24 +1,51 @@
+// This program had been created by Simone Coli, along with the help of
+// Giuseppe Sguera and Matteo Bonaccini.
+// This code is the main document that allows to show a simulation of a
+// pandemy, approximating people with small circles.
+//
+// Copyright, Bologna 2021 ©
+//
+//
+
 #include <SFML/Graphics.hpp>
 #include <ctime>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <random>
+#include <string>
 #include <vector>
 
 #include "balls.hpp"
+#include "elements.hpp"
+#include "argument.hpp"
 
-int main(int argc, char *argv[]) {
-  Balls b(0.5, 0.0333);
+int main(int argc, const char **argv) {
+
+  //float beta = std::stof(argv[1]);
+  //float gamma = std::stof(argv[2]);
+  //int population = std::stoi(argv[3]);
+
+  //Variables v{beta, gamma, population};
+  Variables v{0.1, 0.1, 1000};
+  Balls b(v.getBeta(), v.getGamma());
+
+  v.setSw(add_sizeWindow(argc, argv));
+  v.setSb(add_sizeBall(argc, argv));
+  v.setDistancing(add_distance(argc, argv));
+  
   std::ofstream write;
   write.open("ball_pandemy.dat");
+
   sf::Clock clock;
   int giorno = 0;
   std::cout << "Giorno - n° Sani - n° Infetti - n° Rimossi" << '\n';
-  sf::RenderWindow w(sf::VideoMode(argv[1], argv[1]), "Movimento random");
+
+  sf::RenderWindow w(sf::VideoMode(v.getSw().width, v.getSw().high),
+                     "Movimento random");
   w.setFramerateLimit(120);
 
-  b.addBalls(argv[0], w);
-  std::vector<sf::Vector2f> v = b.randomSpeed();
+  b.addBalls(v.getPopulation(), w, v);
+  std::vector<sf::Vector2f> vec = b.randomSpeed();
 
   while (w.isOpen()) {
     sf::Event e;
@@ -28,10 +55,10 @@ int main(int argc, char *argv[]) {
       }
     }
     w.clear();
-    b.check_Collision(giorno);
+    b.check_Collision(giorno, v);
     b.count_balls(clock, giorno, write);
     b.removed(giorno);
-    b.moveBalls(b.bounce_off_the_wall(v, w));
+    b.moveBalls(b.bounce_off_the_wall(vec, w));
     b.drawBalls(w);
     w.display();
   }
