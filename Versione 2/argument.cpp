@@ -1,8 +1,4 @@
 #include "argument.hpp"
-#include "elements.hpp"
-
-#include <lyra/lyra.hpp>
-
 #include <lyra/lyra.hpp>
 #include <iostream>
 #include "elements.hpp"
@@ -28,7 +24,8 @@ Size add_sizeWindow(int argc, const char **argv) {
   std::cout << "high: "<< high << '\n';
 
   Size s{width, high};
-  return s;
+  if (s.width != 0 && s.high != 0)  return s;
+  else return {(1500, 1500)};
 }
 
 int add_distance(int argc, const char **argv) {
