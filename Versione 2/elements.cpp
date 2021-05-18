@@ -1,5 +1,6 @@
 
 #include "elements.hpp"
+#include <iostream>
 
 Variables::Variables(float b, float g, int p)
     : beta{b}, gamma{g}, population{p} {

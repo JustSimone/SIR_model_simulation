@@ -15,9 +15,7 @@
 #include <string>
 #include <vector>
 
-#include "balls.hpp"
-#include "elements.hpp"
-#include "argument.hpp"
+#include "library.hpp"
 
 int main(int argc, const char **argv) {
 
@@ -26,8 +24,8 @@ int main(int argc, const char **argv) {
   //int population = std::stoi(argv[3]);
 
   //Variables v{beta, gamma, population};
-  
-  Variables v{0.1, 0.1, 1000};
+
+  Variables v{0.9, 0.1, 1000};
   Balls b(v.getBeta(), v.getGamma());
 
   v.setSw(add_sizeWindow(argc, argv));
@@ -44,7 +42,7 @@ int main(int argc, const char **argv) {
   sf::RenderWindow w(sf::VideoMode(v.getSw().width, v.getSw().high),
                      "Movimento random");
   w.setFramerateLimit(120);
-  b.addBalls(b,v.getPopulation(), w, v);
+  b.addBalls(w, v);
 
   while (w.isOpen()) {
     sf::Event e;
@@ -57,7 +55,7 @@ int main(int argc, const char **argv) {
     b.check_Collision(giorno, v);
     b.count_balls(clock, giorno, write);
     b.removed(giorno);
-    b.moveBalls(b,w);
+    b.moveBalls(w);
     b.drawBalls(w);
     w.display();
   }

@@ -1,8 +1,8 @@
-#ifndef ELEMENTS_HPP
-#define ELEMENTS_HPP
-
 #include <SFML/Graphics.hpp>
 #include <iostream>
+
+#ifndef ELEMENTS_HPP
+#define ELEMENTS_HPP
 
 struct Size {
   int width;

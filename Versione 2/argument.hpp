@@ -1,10 +1,11 @@
-#ifndef ARGUMENT_HPP
-#define ARGUMENT_HPP
-
-#include "argument.hpp"
+#include "balls.hpp"
 #include "elements.hpp"
+
 #include <iostream>
 #include <lyra/lyra.hpp>
+
+#ifndef ARGUMENT_HPP
+#define ARGUMENT_HPP
 
 Size add_sizeWindow(int argc, const char **argv) {
 

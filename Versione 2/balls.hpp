@@ -1,11 +1,12 @@
-#ifndef BALLS_HPP
-#define BALLS_HPP
-
 #include <SFML/Graphics.hpp>
 #include <fstream>
+#include <random>
 #include <vector>
 
 #include "elements.hpp"
+
+#ifndef BALLS_HPP
+#define BALLS_HPP
 
 enum class State { Sus, Inf, Rec };
 
@@ -18,24 +19,26 @@ struct Ball {
 
 class Balls {
 private:
+  std::random_device rd{};
+  std::default_random_engine rnd{rd()};
   std::vector<Ball> ball{};
   float beta;
   float gamma;
 
 public:
-  Balls(float b, float g) : beta{b}, gamma{g} {}
-
-  void drawBalls(sf::RenderWindow &wind);
-  void addBalls(Balls b, int const N, sf::RenderWindow const &window, Variables v);
-  void moveBalls(Balls b, sf::RenderWindow &w);
-  void check_Collision(int const g, Variables v);
-  void removed(int const g);
-  void count_balls(sf::Clock &c, int &g, std::ofstream &w);
-
+  Balls(float b, float g): beta{b}, gamma{g} {}
+  sf::Vector2f randomSpeed();
+  void bounce_off_the_wall(sf::RenderWindow const &w1, int const i);
+  void changeSpeed();
+  void moveBalls(sf::RenderWindow &window);
+  void drawBalls(sf::RenderWindow &window);
   int probability_of_infection();
-  std::vector<sf::Vector2f> bounce_off_the_wall(sf::RenderWindow const &w1);
-  std::vector<sf::Vector2f> BallsPosition();
-  std::vector<sf::Vector2f> randomSpeed();
+  void check_Collision(int const g, Variables v);
+  void count_balls(sf::Clock &c, int &g, std::ofstream &write);
+  void checkStatus(int const i);
+  sf::Vector2u randomPosition(sf::RenderWindow const &window);
+  void addBalls(sf::RenderWindow const &window, Variables v);
+  void removed(int const g);
 };
 
 #endif
