@@ -19,11 +19,11 @@
 
 int main(int argc, const char **argv) {
 
-  //float beta = std::stof(argv[1]);
-  //float gamma = std::stof(argv[2]);
-  //int population = std::stoi(argv[3]);
+  // float beta = std::stof(argv[1]);
+  // float gamma = std::stof(argv[2]);
+  // int population = std::stoi(argv[3]);
 
-  //Variables v{beta, gamma, population};
+  // Variables v{beta, gamma, population};
 
   Variables v{0.9, 0.1, 1000};
   Balls b(v.getBeta(), v.getGamma());

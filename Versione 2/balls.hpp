@@ -26,7 +26,7 @@ private:
   float gamma;
 
 public:
-  Balls(float b, float g): beta{b}, gamma{g} {}
+  Balls(float b, float g) : beta{b}, gamma{g} {}
   sf::Vector2f randomSpeed();
   void bounce_off_the_wall(sf::RenderWindow const &w1, int const i);
   void changeSpeed();

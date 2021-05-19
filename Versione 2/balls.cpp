@@ -49,15 +49,13 @@ void Balls::bounce_off_the_wall(sf::RenderWindow const &window, int const i) {
   }
 }
 
-
 void Balls::changeSpeed() {
   int N = ball.size();
-  for(int i=0; i<N; ++i){
+  for (int i = 0; i < N; ++i) {
     sf::Vector2f velocity{randomSpeed()};
     ball[i].speed = velocity;
   }
 }
-
 
 void Balls::moveBalls(sf::RenderWindow &window) {
   int N = ball.size();
@@ -106,7 +104,6 @@ void Balls::check_Collision(int const g, Variables v) {
     }
   }
 }
-
 
 void Balls::count_balls(sf::Clock &c, int &g, std::ofstream &write) {
   int N = ball.size();
@@ -174,7 +171,7 @@ void Balls::addBalls(sf::RenderWindow const &window, Variables v) {
     ball.push_back(singleBall);
   }
   ball[0].state = State::Inf;
-  for (int i=0; i<N; ++i) {
+  for (int i = 0; i < N; ++i) {
     sf::Vector2u initalPosition{randomPosition(window)};
     int xPosition = initalPosition.x;
     int yPosition = initalPosition.y;
@@ -185,8 +182,7 @@ void Balls::addBalls(sf::RenderWindow const &window, Variables v) {
 void Balls::removed(int const g) {
   int N = ball.size();
   for (int i = 0; i < N; ++i) {
-    if (g - (ball[i].t) > (1 / gamma) &&
-        ball[i].state == State::Inf) {
+    if (g - (ball[i].t) > (1 / gamma) && ball[i].state == State::Inf) {
       ball[i].state = State::Rec;
     }
   }

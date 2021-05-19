@@ -7,7 +7,7 @@ set(CMAKE_CXX_EXTENSIONS_OFF)
 
 include_directories("include")
 
-add_executable(ball ball_main.cpp balls.cpp elements.cpp)
+add_executable(ball ball_main.cpp balls.cpp elements.cpp PerlinNoise.cpp speed.cpp)
 find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
 target_link_libraries(ball PRIVATE sfml-graphics)
 target_compile_options(ball PRIVATE -Wall -Wextra -fsanitize=address)
