@@ -51,7 +51,7 @@ void Variables::set_infected(int i) {
 
 void Variables::condition_SizeBall(int const sb) const {
   if (sb < 0) {
-    throw std::range_error("The size of the person must be greater than 0");
+    throw std::range_error(" --!!-- The size of the person must be greater than 0 --!!--");
   }
 
   double window_size_avarege = size_window.width * size_window.width +
@@ -60,7 +60,7 @@ void Variables::condition_SizeBall(int const sb) const {
   int sb2 = sb*sb;
   if (sb2 > (int)max_dimension) {
     throw std::range_error(
-        "The size of the person is too big for the size of the window");
+        " --!!-- The size of the person is too big for the size of the window --!!--");
   }
 }
 
@@ -69,54 +69,54 @@ void condition_SizeWindow(int const w, int const h) {
   sw.width = w;
   sw.height = h;
   if (sw.width < 0 || sw.height < 0) {
-    throw std::range_error("The sizes of the window must be greater than 0");
+    throw std::range_error(" --!!-- The sizes of the window must be greater than 0 --!!--");
   }
 }
 
 void Variables::condition_distancing(int const d) const {
   if (d < 0) {
     throw std::range_error(
-        "The distance necessary to infect must be at least "
-        "the size of the person");
+        " --!!-- The distance necessary to infect must be at least "
+        "the size of the person --!!--");
   }
   double max_dimension = ((size_window.width + size_window.height) / 2) *
                          ((size_window.width + size_window.height) / 2);
   if (d > (int)max_dimension) {
     throw std::range_error(
-        "The infectivity radius of each entity cannot be"
+        " --!!-- The infectivity radius of each entity cannot be"
         "bigger than the square mean of the dimensions of"
-        "the window");
+        "the window --!!--");
   }
 }
 
 void condition_beta(float const b) {
   if (b < 0 || b > 1) {
     throw std::range_error(
-        "The Beta factor must be a value included between 0 and 1");
+        " --!!-- The Beta factor must be a value included between 0 and 1 --!!--");
   }
 }
 
 void condition_gamma(float const g) {
   if (g < 0 || g > 1) {
     throw std::range_error(
-        "The Gamma factor must be a value included between 0 and 1");
+        " --!!-- The Gamma factor must be a value included between 0 and 1 --!!--");
   }
 }
 
 void Variables::condition_infected(int const i) const {
   if (i < 0 || i > population) {
     throw std::range_error(
-        "The number of infected entities must be a positive integer and "
-        "smaller than the total amount of entities");
+        " --!!-- The number of infected entities must be a positive integer and "
+        "smaller than the total amount of entities --!!--");
   }
 }
 
 void Variables::condition_population(int const p) const {
   if (p < 0) {
-    throw std::range_error("The number of people must be greater than 0");
+    throw std::range_error(" --!!-- The number of people must be greater than 0 --!!--");
   } else if (p > 2000) {
     std::cout << "-------------------------------------" << '\n';
-    std::cout << "* ---- * ATTENTION * ---- *" << '\n';
+    std::cout << " * --------- * WORNING * --------- *" << '\n';
     std::cout << "-------------------------------------" << '\n';
     std::cout
         << "An elevated amount of entities in the simulation may slow down "
