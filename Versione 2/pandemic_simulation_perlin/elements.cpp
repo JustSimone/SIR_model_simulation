@@ -60,7 +60,7 @@ void Variables::condition_SizeBall(int const sb) const {
   int sb2 = sb*sb;
   if (sb2 > (int)max_dimension) {
     throw std::range_error(
-        "The size of the person is to big for the size of the window");
+        "The size of the person is too big for the size of the window");
   }
 }
 
@@ -107,7 +107,7 @@ void Variables::condition_infected(int const i) const {
   if (i < 0 || i > population) {
     throw std::range_error(
         "The number of infected entities must be a positive integer and "
-        "smaller than the total ammount of entities");
+        "smaller than the total amount of entities");
   }
 }
 
@@ -119,7 +119,7 @@ void Variables::condition_population(int const p) const {
     std::cout << "* ---- * ATTENTION * ---- *" << '\n';
     std::cout << "-------------------------------------" << '\n';
     std::cout
-        << "An elevated ammount of entities in the simulation may slow dow "
+        << "An elevated amount of entities in the simulation may slow down "
            "the performance of the computer"
         << '\n'
         << "\nKeep going (y - yes, n - no): ";
@@ -150,32 +150,32 @@ void Variables::parse_variables(int argc, const char **argv) {
   auto cli =
       lyra::help(show_help) |
       lyra::opt(sb, "Size Ball")["-s"]["--sizeBall"]["--sb"](
-          "Radius of a single ball in the simulation. It must be a positive "
+          "The radius of a single ball in the simulation. It must be a positive "
           "integer;") |
       lyra::opt(sw.width, "Window's Width")["-x"]["--width"](
-          "Width of the window in which the balls move during the simulation. "
-          "It must be a positive ineger;") |
+          "The width of the window in which the balls move during the simulation. "
+          "It must be a positive integer;") |
       lyra::opt(sw.height, "Window's High")["-y"]["--hieght"](
-          "Height of the window in which the balls move during the simulation. "
+          "The height of the window in which the balls move during the simulation. "
           "It must be a positive integer;") |
       lyra::opt(d, "Distancing")["-d"]["--distance"](
-          "Distance necessary to infect other entities. It must be a positive "
+          "The distance necessary to infect other entities. It must be a positive "
           "integer;") |
       lyra::opt(b, "Beta")["-b"]["--beta"](
-          "Beta factor - the infection factor. "
-          "It must be a value between 0 an 1;")
+          "The beta factor - the infectivity factor. "
+          "It must be a value between 0 and 1;")
           .required() |
       lyra::opt(g, "Gamma")["-g"]["--gamma"](
-          "Gamma factor - the recover factor, ususlly it is the invers of the "
+          "The gamma factor - the recovery factor, usually it is the inverse of the "
           "time (in days) necessary to recover. It must be a value between 0 "
-          "an 1;")
+          "and 1;")
           .required() |
       lyra::opt(p, "Population")["-p"]["--population"](
-          "Number of entities in the simulation. It must be a positive "
+          "The number of entities in the simulation. It must be a positive "
           "integer.")
           .required() |
       lyra::opt(i, "Infected")["-i"]["--infected"](
-          "Number of sick entities that can spread out the disease at day 0. "
+          "The number of sick entities that can spread out the disease at day 0. "
           "It must be greater than 0 but smaller than the total number of "
           "entities.");
   auto result = cli.parse({argc, argv});

@@ -1,11 +1,11 @@
-#include "balls.hpp"
-
 #include <SFML/Graphics.hpp>
 #include <fstream>
 #include <iostream>
 #include <random>
 #include <vector>
+#include "cmath"
 
+#include "balls.hpp"
 #include "elements.hpp"
 #include "speed.hpp"
 
@@ -186,9 +186,9 @@ void Balls::add_balls(Variables const &v) {
     ball[j].state = State::Inf;
   }
   for (int i = 0; i < N; ++i) {
-    sf::Vector2u inital_position{random_position(v)};
-    int x_position = inital_position.x;
-    int y_position = inital_position.y;
+    sf::Vector2u initial_position{random_position(v)};
+    int x_position = initial_position.x;
+    int y_position = initial_position.y;
     ball[i].b.setPosition(x_position, y_position);
   }
 }

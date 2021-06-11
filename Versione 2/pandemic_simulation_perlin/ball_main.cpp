@@ -1,5 +1,5 @@
 // This program had been created by Simone Coli, along with the help of
-// Giuseppe Sguera and Matteo Bonaccini.
+// Giuseppe Sguera and Matteo Bonacini.
 // This code is the main document that allows to show a simulation of a
 // pandemy, approximating people with small circles.
 //
