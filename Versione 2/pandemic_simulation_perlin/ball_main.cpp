@@ -1,5 +1,5 @@
 // This program had been created by Simone Coli, along with the help of
-// Giuseppe Sguera and Matteo Bonaccini.
+// Giuseppe Sguera
 // This code is the main document that allows to show a simulation of a
 // pandemy, approximating people with small circles.
 //
@@ -15,7 +15,13 @@
 
 int main(int argc, const char **argv) {
   Variables v;
-  v.parse_variables(argc, argv);
+
+  try {
+    v.parse_variables(argc, argv);
+  } catch (std::exception& e) {
+    std::cout << e.what();
+    exit(EXIT_FAILURE);
+  }
 
   int seed = 2021;
   bool stop = false;
@@ -55,7 +61,7 @@ int main(int argc, const char **argv) {
     b.move_balls(w);
     b.draw_balls(w);
     w.display();
-    if (stop == true) {
+    if (stop) {
       w.close();
     }
   }
