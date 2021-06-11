@@ -4,3 +4,4 @@ build
 relazione
 *.DS_Store
 dataset
+cmake-build-*
