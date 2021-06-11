@@ -1,7 +1,5 @@
 #include "elements.hpp"
 
-#include <cmath>
-
 // Reading Variables
 
 int Variables::get_sb() const { return size_ball; }
@@ -56,10 +54,11 @@ void Variables::condition_SizeBall(int const sb) const {
     throw std::range_error("The size of the person must be greater than 0");
   }
 
-  double window_size_avarege = sqrt(size_window.width * size_window.width +
-                                    size_window.height * size_window.height);
-  double max_dimension = window_size_avarege / 100;
-  if (sb > (int)max_dimension) {
+  double window_size_avarege = size_window.width * size_window.width +
+                                    size_window.height * size_window.height;
+  double max_dimension = window_size_avarege / 10000;
+  int sb2 = sb*sb;
+  if ( sb2 > (int)max_dimension) {
     throw std::range_error(
         "The size of the person is to big for the size of the window");
   }
@@ -105,7 +104,7 @@ void condition_gamma(float const g) {
 }
 
 void Variables::condition_infected(int const i) const {
-  if (i < 0 && i > population) {
+  if (i < 0 || i > population) {
     throw std::range_error(
         "The number of infected entities must be a positive integer and "
         "smaller than the total ammount of entities");
@@ -143,7 +142,7 @@ void Variables::parse_variables(int argc, const char **argv) {
   bool show_help = false;
   int sb = 3;
   Size sw;
-  int d = 75;
+  int d = 50;
   float b = 0.;
   float g = 0.;
   int p = 0;

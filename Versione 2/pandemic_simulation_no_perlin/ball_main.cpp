@@ -15,7 +15,12 @@
 
 int main(int argc, const char **argv) {
   Variables v;
-  v.parse_variables(argc, argv);
+  try {
+    v.parse_variables(argc, argv);
+  } catch (std::exception& e) {
+    std::cout << e.what();
+    exit(EXIT_FAILURE);
+  }
 
   bool stop = false;
 
@@ -28,7 +33,8 @@ int main(int argc, const char **argv) {
   sf::Clock check;
 
   int giorno = 0;
-  std::cout << "Giorno - n° Sani - n° Infetti - n° Rimossi" << '\n';
+  std::cout << " ---- NON PERLIN PANDEMIC SIMULATION ----" << '\n';
+  std::cout << "\nGiorno - n° Sani - n° Infetti - n° Rimossi" << '\n';
 
   sf::RenderWindow w(sf::VideoMode(v.get_sw().width, v.get_sw().height),
                      "Pandemic Simulator", sf::Style::Close);
@@ -53,10 +59,11 @@ int main(int argc, const char **argv) {
     b.move_balls(w);
     b.draw_balls(w);
     w.display();
-    if (stop == true) {
+    if (stop) {
       w.close();
     }
   }
   write.close();
+  std::cout << "-- THE SIMULATION ENDED --" << '\n';
   return 0;
 }

@@ -1,21 +1,13 @@
 #include "elements.hpp"
 
-#include <iostream>
-
 // Reading Variables
 
 int Variables::get_sb() const { return size_ball; }
-
 Size Variables::get_sw() const { return size_window; }
-
 int Variables::get_distancing() const { return distancing; }
-
 float Variables::get_beta() const { return beta; }
-
 float Variables::get_gamma() const { return gamma; }
-
 int Variables::get_population() const { return population; }
-
 int Variables::get_infected() const { return infected; }
 
 // Setting Variables
@@ -62,10 +54,11 @@ void Variables::condition_SizeBall(int const sb) const {
     throw std::range_error("The size of the person must be greater than 0");
   }
 
-  double window_size_avarege = sqrt(size_window.width * size_window.width +
-                                    size_window.height * size_window.height);
-  double max_dimension = window_size_avarege / 100;
-  if (sb > (int)max_dimension) {
+  double window_size_avarege = size_window.width * size_window.width +
+                                    size_window.height * size_window.height;
+  double max_dimension = window_size_avarege / 10000;
+  int sb2 = sb*sb;
+  if (sb2 > (int)max_dimension) {
     throw std::range_error(
         "The size of the person is to big for the size of the window");
   }
@@ -111,7 +104,7 @@ void condition_gamma(float const g) {
 }
 
 void Variables::condition_infected(int const i) const {
-  if (i < 0 && i > population) {
+  if (i < 0 || i > population) {
     throw std::range_error(
         "The number of infected entities must be a positive integer and "
         "smaller than the total ammount of entities");

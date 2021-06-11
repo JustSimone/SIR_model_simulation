@@ -17,9 +17,7 @@ sf::Vector2f Balls::random_speed() {
     random_speed.y = vy(rnd);
   } while (
       (random_speed.x * random_speed.x) + (random_speed.y * random_speed.y) <
-          1 &&
-      (random_speed.x * random_speed.x) + (random_speed.y * random_speed.y) >
-          0.8);
+          1);
   return random_speed;
 }
 
