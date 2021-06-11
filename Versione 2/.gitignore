@@ -1,0 +1,6 @@
+*.out
+*.dat
+build
+relazione
+*.DS_Store
+dataset
