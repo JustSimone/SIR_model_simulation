@@ -12,6 +12,8 @@ The original idea that we had in mind was to create a space in which the entitie
 
 Both of these programs can be complied with simultaneously using the CMakelists.txt file. To optimize the execution and the compilation of the code it is recommended to use the command:
 
+' $ cmake -DCMAKE_BUILD_TYPE=Debug -S . -B build '
+
 The two executables that come out are one named simulation and the
 other perlin_simulation both of which accept the same input:
 
